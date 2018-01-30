@@ -56,7 +56,8 @@ endfunction
 function extags#init_buffer()
     set filetype=extags
     augroup extags
-        au! BufWinLeave <buffer> call <SID>on_close()
+        " au! BufWinLeave <buffer> call <SID>on_close()
+        au! WinLeave <buffer> call <SID>on_close()
     augroup END
 
     if line('$') <= 1 && g:ex_tags_enable_help
@@ -87,7 +88,7 @@ function extags#open_window()
                     \ s:title, 
                     \ g:ex_tags_winsize,
                     \ g:ex_tags_winpos,
-                    \ 1,
+                    \ 0,
                     \ 1,
                     \ function('extags#init_buffer')
                     \ )
